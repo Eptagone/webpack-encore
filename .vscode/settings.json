@@ -1,0 +1,20 @@
+{
+  "npm.packageManager": "pnpm",
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features",
+    "editor.formatOnSave": true
+  },
+  "editor.codeActionsOnSave": {
+   "source.fixAll.eslint": "explicit",
+        "source.organizeImports": "explicit"
+  },
+  "eslint.useFlatConfig": true,
+  "typescript.referencesCodeLens.enabled": true,
+  "typescript.preferences.preferTypeOnlyAutoImports": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+}

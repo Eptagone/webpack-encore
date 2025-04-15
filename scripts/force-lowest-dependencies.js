@@ -7,8 +7,6 @@
  * file that was distributed with this source code.
  */
 
-'use strict';
-
 const fs = require('fs');
 const childProcess = require('child_process');
 
@@ -62,7 +60,7 @@ function getLowestVersion(dependency, range) {
                 }
 
                 reject(`Unexpected response for "${dependency}@${range}": ${versions[0]}`);
-            }
+            },
         );
     });
 }
@@ -79,7 +77,7 @@ fs.readFile('package.json', (error, data) => {
         for (const dependency in packageInfo.dependencies) {
             dependencyPromises.push(getLowestVersion(
                 dependency,
-                packageInfo.dependencies[dependency]
+                packageInfo.dependencies[dependency],
             ));
         }
     }
@@ -89,19 +87,19 @@ fs.readFile('package.json', (error, data) => {
         for (const devDependency in packageInfo.devDependencies) {
             devDependencyPromises.push(getLowestVersion(
                 devDependency,
-                packageInfo.devDependencies[devDependency]
+                packageInfo.devDependencies[devDependency],
             ));
         }
     }
 
-    const dependenciesUpdate = Promise.all(dependencyPromises).then(versions => {
-        versions.forEach(version => {
+    const dependenciesUpdate = Promise.all(dependencyPromises).then((versions) => {
+        versions.forEach((version) => {
             packageInfo.dependencies[version[0]] = version[1];
         });
     });
 
-    const devDependenciesUpdate = Promise.all(devDependencyPromises).then(versions => {
-        versions.forEach(version => {
+    const devDependenciesUpdate = Promise.all(devDependencyPromises).then((versions) => {
+        versions.forEach((version) => {
             packageInfo.devDependencies[version[0]] = version[1];
         });
     });
@@ -138,7 +136,7 @@ fs.readFile('package.json', (error, data) => {
                 console.log(`  - ${dependency}: ${packageInfo.devDependencies[dependency]}`);
             }
         })
-        .catch(error => {
+        .catch((error) => {
             console.error(error);
             process.exit(1); // eslint-disable-line
         });
